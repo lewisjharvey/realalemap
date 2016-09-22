@@ -22,10 +22,42 @@ namespace RealAleMap.Web.Migrations
             context.Breweries.AddOrUpdate(p => p.Name,
                 new Brewery()
                 {
-                    Name = "Home Brewery",
+                    Name = "Woodfordes",
+                    Email = "me@lewisjharvey.co.uk"
+                }
+            );
+
+            context.SaveChanges();
+
+            context.Beers.AddOrUpdate(p => p.Name,
+                new Beer()
+                {
+                    BreweryId = context.Breweries.Single(b => b.Name.Equals("Woodfordes")).BreweryId,
+                    Name = "Wherry"
+                }
+            );
+
+            context.SaveChanges();
+
+            context.Venues.AddOrUpdate(p => p.Name,
+                new Venue()
+                {
+                    Name = "The Crown Lodge",
                     Email = "me@lewisjharvey.co.uk",
-                    Latitude = 52.604927,
-                    Longitude = 0.224097
+                    Latitude = 52.60945,
+                    Longitude = 0.24295
+                }
+            );
+
+            context.SaveChanges();
+
+            context.Stocks.AddOrUpdate(p => p.BeerId,
+                new Stock()
+                {
+                    BeerId = context.Beers.Single(b => b.Name.Equals("Wherry")).BeerId,
+                    UserId = context.Users.Single(u => u.UserName.Equals("me@lewisjharvey.co.uk")).Id,
+                    VenueId = context.Venues.Single(v => v.Name.Equals("The Crown Lodge")).VenueId,
+                    ReportedTime = DateTime.Now
                 }
             );
         }
@@ -42,7 +74,7 @@ namespace RealAleMap.Web.Migrations
             var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var user = new ApplicationUser()
             {
-                UserName = "me@lewisjharvey.co.uk",
+                UserName = "me@lewisjharvey.co.uk"
             };
 
             identityResult = um.Create(user, "F!tzroyrobin1");

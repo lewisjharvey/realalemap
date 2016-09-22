@@ -1,0 +1,122 @@
+﻿@model RealAleMap.Web.Models.Venue
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Venue</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Longitude, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Longitude, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Longitude, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Center map on brewery</label>
+            <div class="col-md-10">
+                <div id="map" style="height: 400px; width: 400px;"></div>
+                <script>
+                    var map;
+
+
+                    function initMap() {
+                        var startPosition = new google.maps.LatLng(51.511811, -0.090208);
+                        map = new google.maps.Map(document.getElementById('map'),
+                        {
+                            center: startPosition,
+                            zoom: 8
+                        });
+
+                        var marker = new google.maps.Marker({
+                            position: startPosition,
+                            map: map
+                        });
+
+                        document.getElementById("Latitude").value = startPosition.lat().toFixed(5);
+
+                        document.getElementById("Longitude").value = startPosition.lng().toFixed(5);
+
+                        // if center changed then update lat and lon document objects
+                        google.maps.event.addListener(map,
+                            'center_changed',
+                            function() {
+                                var location = map.getCenter();
+                                document.getElementById("Latitude").value = location.lat().toFixed(5);
+
+                                document.getElementById("Longitude").value = location.lng().toFixed(5);
+                                // call function to reposition marker location
+                                marker.setPosition(location);
+                            });
+
+                        //google.maps.event.addListener(map,
+                        //    "click",
+                        //    function(event) {
+                        //        // get lat/lon of click
+                        //        var clickLat = event.latLng.lat();
+                        //        var clickLon = event.latLng.lng();
+
+                        //        // show in input box
+                        //        document.getElementById("lat").value = clickLat.toFixed(5);
+                        //        document.getElementById("lon").value = clickLon.toFixed(5);
+
+                        //        marker.setPosition(event.latLng);
+                        //});
+                    }
+
+
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3U-UJx-a8LaO0y0lOn7tkginc9L6hKsw&callback=initMap" async defer></script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

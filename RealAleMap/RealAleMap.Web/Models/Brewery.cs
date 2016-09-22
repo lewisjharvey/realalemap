@@ -34,23 +34,5 @@ namespace RealAleMap.Web.Models
         [DataType(DataType.EmailAddress)]
         [Required]
         public string Email { get; set; }
-
-        /// <summary>
-        /// Gets or sets the latitude.
-        /// </summary>
-        /// <value>
-        /// The latitude.
-        /// </value>
-        [Required]
-        public double Latitude { get; set; }
-
-        /// <summary>
-        /// Gets or sets the longitude.
-        /// </summary>
-        /// <value>
-        /// The longitude.
-        /// </value>
-        [Required]
-        public double Longitude { get; set; }
     }
 }

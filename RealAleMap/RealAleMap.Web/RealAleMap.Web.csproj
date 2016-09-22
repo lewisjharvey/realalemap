@@ -173,6 +173,7 @@
     <Compile Include="Controllers\BreweriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,12 +189,23 @@
     <Compile Include="Migrations\201609211000567_AddingLocationsToBreweries.Designer.cs">
       <DependentUpon>201609211000567_AddingLocationsToBreweries.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609211242100_AddingVenuesWithLocations.cs" />
+    <Compile Include="Migrations\201609211242100_AddingVenuesWithLocations.Designer.cs">
+      <DependentUpon>201609211242100_AddingVenuesWithLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609211456362_AddingStockings.cs" />
+    <Compile Include="Migrations\201609211456362_AddingStockings.Designer.cs">
+      <DependentUpon>201609211456362_AddingStockings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Beer.cs" />
     <Compile Include="Models\Brewery.cs" />
+    <Compile Include="Models\ErrorHandlerContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Stock.cs" />
+    <Compile Include="Models\Venue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -262,6 +274,11 @@
     <Content Include="Views\Beers\Details.cshtml" />
     <Content Include="Views\Beers\Edit.cshtml" />
     <Content Include="Views\Beers\Index.cshtml" />
+    <Content Include="Views\Venues\Create.cshtml" />
+    <Content Include="Views\Venues\Delete.cshtml" />
+    <Content Include="Views\Venues\Details.cshtml" />
+    <Content Include="Views\Venues\Edit.cshtml" />
+    <Content Include="Views\Venues\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609211000567_AddingLocationsToBreweries.resx">
       <DependentUpon>201609211000567_AddingLocationsToBreweries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609211242100_AddingVenuesWithLocations.resx">
+      <DependentUpon>201609211242100_AddingVenuesWithLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609211456362_AddingStockings.resx">
+      <DependentUpon>201609211456362_AddingStockings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

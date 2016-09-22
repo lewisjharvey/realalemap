@@ -18,7 +18,7 @@ namespace RealAleMap.Web.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -33,5 +33,9 @@ namespace RealAleMap.Web.Models
         public System.Data.Entity.DbSet<RealAleMap.Web.Models.Brewery> Breweries { get; set; }
 
         public System.Data.Entity.DbSet<RealAleMap.Web.Models.Beer> Beers { get; set; }
+
+        public System.Data.Entity.DbSet<RealAleMap.Web.Models.Venue> Venues { get; set; }
+
+        public System.Data.Entity.DbSet<RealAleMap.Web.Models.Stock> Stocks { get; set; }
     }
 }
